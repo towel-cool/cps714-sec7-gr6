@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <style>
+        .card {
+            height: 100%;
+        }
+        .loyalty-points {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">Events Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="training.html" role="button">Training Registration</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="bg-white p-4 rounded shadow">
+            <h1 class="text-center text-dark mb-4">Event Registration</h1>
+            <p class="text-center text-secondary">Register for upcoming events in the Fleet Rewards Program and earn loyalty points!</p>
+            
+            <!-- Event Cards -->
+            <div class="row g-4">
+                <!-- Event 1 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Fleet Safety Workshop</h5>
+                            <p class="card-text text-secondary">Learn about safety measures for drivers and fleet managers.</p>
+                            <p class="loyalty-points">Loyalty Points: 5</p>
+                            <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Fleet Safety Workshop')">Register</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event 2 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Eco-Friendly Fleet Management</h5>
+                            <p class="card-text text-secondary">Learn techniques to reduce fleet carbon footprints.</p>
+                            <p class="loyalty-points">Loyalty Points: 4</p>
+                            <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Eco-Friendly Fleet Management')">Register</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event 3 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Driver Retention Strategies</h5>
+                            <p class="card-text text-secondary">Discover methods to retain top-performing drivers.</p>
+                            <p class="loyalty-points">Loyalty Points: 3</p>
+                            <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Driver Retention Strategies')">Register</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event 4 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Fleet Maintenance Essentials</h5>
+                            <p class="card-text text-secondary">Master the basics of fleet maintenance to save costs.</p>
+                            <p class="loyalty-points">Loyalty Points: 2</p>
+                            <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Fleet Maintenance Essentials')">Register</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event 5 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Technology Integration</h5>
+                            <p class="card-text text-secondary">Learn how to implement cutting-edge fleet technology.</p>
+                            <p class="loyalty-points">Loyalty Points: 1</p>
+                            <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Technology Integration')">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-5 text-secondary">
+                <p>Admin can view registrations via the Admin Dashboard.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function registerEvent(button, eventName) {
+            const cardBody = button.parentElement;
+
+            // Check if already registered
+            if (button.classList.contains('btn-danger')) {
+                button.textContent = "Register";
+                button.classList.remove('btn-danger');
+                button.classList.add('btn-primary');
+                alert(`You have canceled your registration for ${eventName}.`);
+            } else {
+                // Create a registration form for username and email
+                const username = prompt("Enter your username:");
+                const email = prompt("Enter your email:");
+
+                if (username && email) {
+                    button.textContent = "Cancel Registration";
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-danger');
+                    alert(`You have registered for ${eventName}!\nUsername: ${username}\nEmail: ${email}`);
+                } else {
+                    alert("Registration canceled. Please provide your username and email.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
