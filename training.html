@@ -27,12 +27,27 @@
         .status.completed {
             color: blue;
         }
+
+        .points-bar {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .points-display {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .border {
+            border-bottom: 1px;
+        }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="#">Training Portal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -48,6 +63,12 @@
             </div>
         </div>
     </nav>
+
+    <!-- Points Bar -->
+    <div class="points-bar text-center shadow-sm">
+        <span>Loyalty Points: <span class="points-display" id="points">0</span></span>
+    </div>
+
 
     <!-- Main Content -->
     <div class="container mt-5">
@@ -66,7 +87,7 @@
                             <p class="card-text text-secondary">Learn about best practices in fleet management.</p>
                             <p class="loyalty-points">Loyalty Points: 1</p>
                             <a href="resource.html?title=Webinar:%20Example%20Webinar" class="btn btn-primary mt-auto"
-                                target="_blank" onclick="markAsViewed(this)">View Webinar</a>
+                                target="_blank" onclick="incrementPoints(1, this)">View Webinar</a>
                             <p class="status mt-2" id="status-1">Not Viewed</p>
                         </div>
                     </div>
@@ -79,7 +100,7 @@
                             <p class="card-text text-secondary">Read insights and tips from industry experts.</p>
                             <p class="loyalty-points">Loyalty Points: 1</p>
                             <a href="resource.html?title=Article:%20Example%20Article" class="btn btn-primary mt-auto"
-                                target="_blank" onclick="markAsViewed(this)">Read Article</a>
+                                target="_blank" onclick="incrementPoints(1, this)">Read Article</a>
                             <p class="status mt-2" id="status-2">Not Viewed</p>
                         </div>
                     </div>
@@ -92,7 +113,7 @@
                             <p class="card-text text-secondary">Watch a short video on driver safety tips to help with understanding.</p>
                             <p class="loyalty-points">Loyalty Points: 1</p>
                             <a href="resource.html?title=Video:%20Example%20Video" class="btn btn-primary mt-auto"
-                                target="_blank" onclick="markAsViewed(this)">Watch Video</a>
+                                target="_blank" onclick="incrementPoints(1, this)">Watch Video</a>
                             <p class="status mt-2" id="status-3">Not Viewed</p>
                         </div>
                     </div>
@@ -109,10 +130,19 @@
     <!-- Footer -->
     <div class="text-center mt-5 text-secondary">
     </div>
-    </div>
-    </div>
 
     <script>
+        let points = 0;
+
+        function incrementPoints(value, element) {
+            // Increment points
+            points += value;
+            document.getElementById('points').textContent = points;
+
+            // Mark as viewed
+            markAsViewed(element);
+        }
+
         function markAsViewed(element) {
             // Find the status element associated with the clicked link
             const statusElement = element.nextElementSibling;
