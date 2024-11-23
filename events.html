@@ -47,12 +47,12 @@
             <!-- Event Cards -->
             <div class="row g-4">
                 <!-- Event 1 -->
-                <div class="col-md-4">
+                <div class="col-md-4" id="removeEvent">
                     <div class="card shadow-sm">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Fleet Safety Workshop</h5>
                             <p class="card-text text-secondary">Learn about safety measures for drivers and fleet managers.</p>
-                            <p class="loyalty-points">Loyalty Points: 5</p>
+                            <p class="loyalty-points">Loyalty Points: 50</p>
                             <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Fleet Safety Workshop')">Register</button>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Eco-Friendly Fleet Management</h5>
                             <p class="card-text text-secondary">Learn techniques to reduce fleet carbon footprints.</p>
-                            <p class="loyalty-points">Loyalty Points: 4</p>
+                            <p class="loyalty-points">Loyalty Points: 50</p>
                             <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Eco-Friendly Fleet Management')">Register</button>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Driver Retention Strategies</h5>
                             <p class="card-text text-secondary">Discover methods to retain top-performing drivers.</p>
-                            <p class="loyalty-points">Loyalty Points: 3</p>
+                            <p class="loyalty-points">Loyalty Points: 30</p>
                             <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Driver Retention Strategies')">Register</button>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Fleet Maintenance Essentials</h5>
                             <p class="card-text text-secondary">Master the basics of fleet maintenance to save costs.</p>
-                            <p class="loyalty-points">Loyalty Points: 2</p>
+                            <p class="loyalty-points">Loyalty Points: 100</p>
                             <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Fleet Maintenance Essentials')">Register</button>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Technology Integration</h5>
                             <p class="card-text text-secondary">Learn how to implement cutting-edge fleet technology.</p>
-                            <p class="loyalty-points">Loyalty Points: 1</p>
+                            <p class="loyalty-points">Loyalty Points: 100</p>
                             <button class="btn btn-primary mt-auto" onclick="registerEvent(this, 'Technology Integration')">Register</button>
                         </div>
                     </div>
@@ -105,8 +105,11 @@
 
             <!-- Footer -->
             <div class="text-center mt-5 text-secondary">
-                <p>Admin can view registrations via the Admin Dashboard.</p>
-            </div>
+                <pre>Admin can can change view permission via the Admin Dashboard.<br/>The below buttons demonstrates Admin Dashboard integration.</pre>
+                <a class="btn btn-primary mt-auto" onclick="toggleVisibility('removeEvent')">
+                    Toggle First Event
+                </a>
+                </div>
         </div>
     </div>
 
@@ -135,6 +138,18 @@
                 }
             }
         }
+
+        function toggleVisibility(theElement) {
+        const element = document.getElementById(theElement);
+        if (element.classList.contains('d-none')) {
+            element.classList.remove('d-none');
+            element.classList.add('d-flex');
+        } else {
+            element.classList.remove('d-flex');
+            element.classList.add('d-none');
+        }
+        }
+
     </script>
 </body>
 </html>

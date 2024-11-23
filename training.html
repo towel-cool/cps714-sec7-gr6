@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         .card {
             height: 100%;
@@ -66,9 +67,9 @@
 
     <!-- Points Bar -->
     <div class="points-bar text-center shadow-sm">
+        <span class="p-3">Resources Viewed: <span class="points-display" id="progress">0</span></span>
         <span>Loyalty Points: <span class="points-display" id="points">0</span></span>
     </div>
-
 
     <!-- Main Content -->
     <div class="container mt-5">
@@ -78,16 +79,18 @@
                 below:</p>
 
             <!-- Resource Cards -->
-            <div class="row g-4">
+
+            <!-- CARD SET ONE -->
+            <div class="row g-4 pt-4" id="truck">
                 <!-- Card 1 -->
                 <div class="col-md-4">
                     <div class="card shadow-sm">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Webinar: Example Webinar</h5>
-                            <p class="card-text text-secondary">Learn about best practices in fleet management.</p>
-                            <p class="loyalty-points">Loyalty Points: 1</p>
-                            <a href="resource.html?title=Webinar:%20Example%20Webinar" class="btn btn-primary mt-auto"
-                                target="_blank" onclick="incrementPoints(1, this)">View Webinar</a>
+                            <h5 class="card-title">Webinar: Truck Webinar</h5>
+                            <p class="card-text text-secondary">Learn about best practices for trucks in fleet management.</p>
+                            <p class="loyalty-points">Loyalty Points: 100</p>
+                            <a href="resource.html?title=Webinar:%Truck%20Webinar" class="btn btn-primary mt-auto"
+                                target="_blank" onclick="incrementPoints(100, this, 2)">View Webinar</a>
                             <p class="status mt-2" id="status-1">Not Viewed</p>
                         </div>
                     </div>
@@ -96,11 +99,11 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Article: Example Article</h5>
-                            <p class="card-text text-secondary">Read insights and tips from industry experts.</p>
-                            <p class="loyalty-points">Loyalty Points: 1</p>
-                            <a href="resource.html?title=Article:%20Example%20Article" class="btn btn-primary mt-auto"
-                                target="_blank" onclick="incrementPoints(1, this)">Read Article</a>
+                            <h5 class="card-title">Article: Truck Article</h5>
+                            <p class="card-text text-secondary">Read insights and tips from industry experts for trucks.</p>
+                            <p class="loyalty-points">Loyalty Points: 50</p>
+                            <a href="resource.html?title=Article:%Truck%20Article" class="btn btn-primary mt-auto"
+                                target="_blank" onclick="incrementPoints(50, this, 1)">Read Article</a>
                             <p class="status mt-2" id="status-2">Not Viewed</p>
                         </div>
                     </div>
@@ -109,11 +112,54 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Video: Example Video</h5>
-                            <p class="card-text text-secondary">Watch a short video on driver safety tips to help with understanding.</p>
-                            <p class="loyalty-points">Loyalty Points: 1</p>
-                            <a href="resource.html?title=Video:%20Example%20Video" class="btn btn-primary mt-auto"
-                                target="_blank" onclick="incrementPoints(1, this)">Watch Video</a>
+                            <h5 class="card-title">Video: Truck Video</h5>
+                            <p class="card-text text-secondary">Watch a short video on driver safety tips for trucks to help with understanding.</p>
+                            <p class="loyalty-points">Loyalty Points: 30</p>
+                            <a href="resource.html?title=Video:%Truck%20Video" class="btn btn-primary mt-auto"
+                                target="_blank" onclick="incrementPoints(30, this, 3)">Watch Video</a>
+                            <p class="status mt-2" id="status-3">Not Viewed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD SET TWO -->
+            <div class="row g-4 pt-4" id="forklift">
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Webinar: Forklift Webinar</h5>
+                            <p class="card-text text-secondary">Learn about best practices in fleet management for forklifts.</p>
+                            <p class="loyalty-points">Loyalty Points: 50</p>
+                            <a href="resource.html?title=Webinar:%Forklift%20Webinar" class="btn btn-primary mt-auto"
+                                target="_blank" onclick="incrementPoints(50, this, 1)">View Webinar</a>
+                            <p class="status mt-2" id="status-1">Not Viewed</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-4" >
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Article: Forklift Article</h5>
+                            <p class="card-text text-secondary">Read insights and tips from industry experts for forklifts.</p>
+                            <p class="loyalty-points">Loyalty Points: 100</p>
+                            <a href="resource.html?title=Article:%Forklift%20Article" class="btn btn-primary mt-auto"
+                                target="_blank" onclick="incrementPoints(100, this, 2)">Read Article</a>
+                            <p class="status mt-2" id="status-2">Not Viewed</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Video: Forklift Video</h5>
+                            <p class="card-text text-secondary">Watch a short video on driver safety tips for forklifts to help with understanding.</p>
+                            <p class="loyalty-points">Loyalty Points: 30</p>
+                            <a href="resource.html?title=Video:%Forklift%20Video" class="btn btn-primary mt-auto"
+                                target="_blank" onclick="incrementPoints(30, this, 3)">Watch Video</a>
                             <p class="status mt-2" id="status-3">Not Viewed</p>
                         </div>
                     </div>
@@ -122,37 +168,94 @@
 
             <!-- Footer -->
             <div class="text-center mt-5 text-secondary">
+            <pre>Admin can can change view permission via the Admin Dashboard.<br/>The below buttons demonstrates Admin Dashboard integration.</pre>
+            <a class="btn btn-primary mt-auto" onclick="toggleVisibility('truck')">
+                Toggle Truck View
+            </a>
+            <a class="btn btn-primary mt-auto" onclick="toggleVisibility('forklift')">
+                Toggle Forklift View
+            </a>
             </div>
         </div>
     </div>
+    
+<script>
+    let points = 0;
+    let progress = 0;
+
+    // Retrieve user ID from localStorage (assuming it's set during login)
+    let userID = localStorage.getItem('user_id');
+
+    // Function to fetch user's existing points from the backend
+    async function fetchUserPoints() {
+        if (!userID) {
+            alert('User not logged in.');
+            return;
+        }
+
+        try {
+            // Fetch user's points from the backend (adjust the URL if necessary)
+            const response = await axios.get(`https://cps714-backend.onrender.com/points/${userID}`);
+
+            console.log('Fetched user points:', response);  // Debugging
+
+            if (response.status === 200 && response.data) {
+                // Assuming the user's points are stored directly in response.data.points
+                points = response.data.points || 0;
+                document.getElementById('points').textContent = points;
+            } else {
+                console.error('No points data found for this user.');
+            }
+        } catch (error) {
+            console.error('Error fetching user points:', error);
+        }
+    }
 
 
-    <!-- Footer -->
-    <div class="text-center mt-5 text-secondary">
-    </div>
+    // Increment points function, updated to reflect and store points
+    async function incrementPoints(value, element, activityID) {
+        if (!userID) {
+            alert('User not logged in.');
+            return;
+        }
 
-    <script>
-        let points = 0;
-
-        function incrementPoints(value, element) {
-            // Increment points
+        try {
+            // Increment points locally
             points += value;
+            progress += 1;
             document.getElementById('points').textContent = points;
+            document.getElementById('progress').textContent = progress;
 
             // Mark as viewed
             markAsViewed(element);
+
+            // API call to log the activity and update points on the server
+            const activityResponse = await axios.post("https://cps714-backend.onrender.com/activities/", {
+                user_id: userID,
+                activity_id: activityID,
+                loyalty_points: points  // Update with the new points
+            });
+
+            console.log(`Activity ${activityID} logged for user ${userID}. Response:`, activityResponse);
+
+        } catch (error) {
+            console.error("Error logging activity:", error);
         }
+    }
 
-        function markAsViewed(element) {
-            // Find the status element associated with the clicked link
-            const statusElement = element.nextElementSibling;
+    // Function to mark a training resource as viewed
+    function markAsViewed(element) {
+        // Find the status element associated with the clicked link
+        const statusElement = element.nextElementSibling;
 
-            // Update the status text and style
-            statusElement.textContent = "Viewed";
-            statusElement.classList.add("viewed");
-        }
-    </script>
+        // Update the status text and style
+        statusElement.textContent = "Viewed";
+        statusElement.classList.add("viewed");
+    }
 
-</body>
+    // Fetch user's points on page load
+    document.addEventListener('DOMContentLoaded', fetchUserPoints);
+</script>
+
 
 </html>
